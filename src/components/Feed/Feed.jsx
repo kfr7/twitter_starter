@@ -5,9 +5,10 @@ import "./Feed.css"
 
 export default function Feed(props) {
   return (
+
     <div className="col feed">
-      {/* UPDATE TWEET BOX PROPS HERE */}
-      <TweetBox />
+      {/* Below is the correct updated props to TweetBox */}
+      <TweetBox setTweets={props.setTweets} userProfile={props.userProfile} tweetAmount={props.tweets.length} />
 
       <div className="see-new-tweets beet">
         <p>
@@ -15,7 +16,12 @@ export default function Feed(props) {
         </p>
       </div>
 
-      <div className="twitter-feed">{/* ADD CODE HERE */}</div>
+      <div className="twitter-feed">
+      {props.tweets.map((tweet, idx) => (
+        <Tweet key={idx} tweet={tweet}/>
+
+      ))
+      }</div>
     </div>
   )
 }

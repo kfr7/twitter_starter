@@ -3,6 +3,20 @@ import TweetInput from "./TweetInput"
 import "./TweetBox.css"
 
 export default function TweetBox(props) {
+// passed through: setTweets, userProfile, tweetAmount (from Feed.jsx)
+  const handleOnSubmit = () => {
+    let newTweet = {
+      id: props.tweetAmount,
+      name: props.userProfile.name,
+      handle: props.userProfile.handle,
+      text: ``, // for now set it equal to empty string  (said in instructions)
+      comments: 0,
+      retweets: 0,
+      likes: 0,
+      }
+    props.setTweets((oldArray) => oldArray.concat(newTweet))
+  }
+
   return (
     <div className="tweet-box">
       <TweetInput />
@@ -10,7 +24,7 @@ export default function TweetBox(props) {
       <div className="tweet-box-footer">
         <TweetBoxIcons />
         <TweetCharacterCount />
-        <TweetSubmitButton />
+        <TweetSubmitButton handleOnSubmit={handleOnSubmit}/>
       </div>
     </div>
   )
@@ -32,11 +46,12 @@ export function TweetCharacterCount(props) {
   return <span></span>
 }
 
-export function TweetSubmitButton() {
+// I added that props to the TweetSubmitButton function
+export function TweetSubmitButton(props) {
   return (
     <div className="tweet-submit">
       <i className="fas fa-plus-circle"></i>
-      <button className="tweet-submit-button">Tweet</button>
+      <button className="tweet-submit-button" onClick={props.handleOnSubmit}>Tweet</button>
     </div>
   )
 }

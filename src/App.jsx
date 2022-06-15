@@ -20,7 +20,8 @@ export default function App() {
         <UserProfile userProfile={userProfile} />
         <Feed tweetText={tweetText} 
         setTweetText={setTweetText} 
-        tweets={tweets} setTweets={setTweets} 
+        tweets={tweets} 
+        setTweets={setTweets} 
         userProfile={userProfile} 
         setUserProfile={setUserProfile}/>
 

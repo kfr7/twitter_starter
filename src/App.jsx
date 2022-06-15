@@ -11,14 +11,19 @@ export default function App() {
   // below I'm trying before watching the videos though
   // nevermind, on start of step 3 (haven't started anything)
   // make sure to watch videos to understand input and change event and all that
-
+  const [tweetText, setTweetText] = React.useState(``);
 
   return (
     <div className="app">
       <Navbar navLinks={navLinks} />
       <main>
-        <UserProfile userProfile={userProfile}/>
-        <Feed tweets={tweets} setTweets={setTweets} userProfile={userProfile} />
+        <UserProfile userProfile={userProfile} />
+        <Feed tweetText={tweetText} 
+        setTweetText={setTweetText} 
+        tweets={tweets} setTweets={setTweets} 
+        userProfile={userProfile} 
+        setUserProfile={setUserProfile}/>
+
         <Advertisements />
       </main>
     </div>

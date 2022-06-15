@@ -2,11 +2,12 @@ import * as React from "react"
 import AvatarIcon from "../AvatarIcon/AvatarIcon"
 
 export default function TweetInput(props) {
+  // props... handleOnChange, value
+
   return (
     <div className="tweet-textarea">
       <AvatarIcon />
-
-      <textarea name="new-tweet-input" type="text" placeholder="What's Happening?"></textarea>
+      <textarea value={props.value} onChange={props.handleOnChange} name="new-tweet-input" type="text" placeholder="What's Happening?"></textarea>
 
       <SmileIcon />
     </div>

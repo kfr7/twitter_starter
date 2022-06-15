@@ -91,14 +91,3 @@
   font-size: 15px;
 }
 /* changed font size from 20px to 15px */
-
-.tweet-length-red {
-  color: red;
-  margin-left: auto;
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 20px;
-  margin-top: 5px;
-  font-size: 15px;
-}

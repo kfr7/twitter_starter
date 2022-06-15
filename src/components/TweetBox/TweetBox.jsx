@@ -6,21 +6,25 @@ export default function TweetBox(props) {
 // props. look below
 // tweetText setTweetText setTweets userProfile setUserProfile tweetAmount
   
-// event.target.textarea.value maybe try
   const handleOnTweetTextChange = (event) => {
-    props.setTweetText(event.target.value) // change this to use textarea
-                        // the line ABOVE might be wrong
+    props.setTweetText(event.target.value)
   }
 
 
   const handleOnSubmit = () => {
-    let oldNumTweets = props.userProfile.numTweets;
-    let updatedNumTweets = oldNumTweets + 1;
+    // let oldNumTweets = props.userProfile.numTweets;
+    // let updatedNumTweets = oldNumTweets + 1;
     // console.log(props);
     // console.log("new amount:", updatedNumTweets)
     // props.setUserProfile({...props.userProfile, numTweets: updatedNumTweets});
 
     // STILL NEED TO UPDATE USER'S NUMTWEETS
+
+    // added because <i> tag has no disabled? attribute
+    // if (props.tweetText.length === 0 || props.tweetText.length > 140)
+    // {
+    //   return;
+    // }
 
     let newTweet = {
       id: props.tweetAmount,
@@ -31,7 +35,6 @@ export default function TweetBox(props) {
       retweets: 0,
       likes: 0,
       }
-    console.log(newTweet)
     props.setTweets((oldArray) => oldArray.concat(newTweet))
 
     props.setTweetText(``);
@@ -68,22 +71,35 @@ export function TweetCharacterCount(props) {
   {
     return <span className="tweet-length"></span>
   }
-  else if (props.value > 140)
-  {
-    return <span className="tweet-length-red">Character Count: {140-props.value}</span>
-  }
+  // else if (props.value > 140)
+  // {
+  //   return <span className="tweet-length-red">Character Count: {140-props.value}</span>
+  // }
+  // bettter way to do it below
+  // look up "string interpolation"
   else
   {
-    return <span className="tweet-length">Character Count: {140-props.value}</span>
+    return <span className={`tweet-length ${props.value > 140 ? "red": ""}`}>Character Count: {140-props.value}</span>
   }
-  // return <span className={140-props.value < 0 ? "tweet-length-red" : "tweet-length"}>Character Count: {140-props.value}</span>
 }
 
 // I added that props to the TweetSubmitButton function
 export function TweetSubmitButton(props) {
   return (
     <div className="tweet-submit">
-      <i className="fas fa-plus-circle"></i>
+      <i className="fas fa-plus-circle" 
+      onClick={() => {
+        console.log("Entering")
+        if (props.value === 0 || props.value > 140)
+        {
+          return;
+        }
+        else
+        {
+          props.handleOnSubmit();
+        }
+      }}
+      ></i>
       <button disabled={props.value === 0 || props.value > 140} className="tweet-submit-button" onClick={props.handleOnSubmit}>Tweet</button>
     </div>
   )

@@ -8,7 +8,6 @@ export default function Feed(props) {
 // props has .tweets, .setTweets, .userProfile, .setUserProfile, .tweetText, .setTweetText
     <div className="col feed">
       {/* Below is the correct updated props to TweetBox */}
-      {console.log(props.setUserProfile)}
       <TweetBox 
       tweetText={props.tweetText} 
       setTweetText={props.setTweetText} 
